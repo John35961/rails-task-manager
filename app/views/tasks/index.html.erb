@@ -1,44 +1,50 @@
-<% if @tasks.length == 0 %>
-  <p class="text-center">No task yet! Add a new one from the navigation bar.</p>
-<% else %>
-  <% task = @tasks.length == 1 ? "task" : "tasks"  %>
-  <h2 class="mb-3"><%= @tasks.length %> <%= task %> </h2>
-  <div class="progress mb-3" style="height: 20px;">
-      <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" id="progressbar" style="width: <%= @progress %>%;" aria-valuenow=<%= @progress %> aria-valuemin="0" aria-valuemax="100"><small><%= @progress.to_i %>%</small></div>
-      <% if @progress == 100.0 %>
-        <script>
-        if (true) {
-          const progress = document.getElementById('progressbar');
-          progress.classList.add('bg-success');
-          progress.innerText= 'All done!';
-        };
-        </script>
+<div class="container p-4">
+  <div class="row d-flex justify-content-center">
+    <div class="col-12 col-lg-6">
+      <% if @tasks.length == 0 %>
+        <p class="text-center">No task yet! Add a new one from the navigation bar.</p>
+      <% else %>
+        <% task = @tasks.length == 1 ? "task" : "tasks"  %>
+        <h2 class="mb-3"><%= @tasks.length %> <%= task %> </h2>
+        <div class="progress mb-3" style="height: 20px;">
+            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" id="progressbar" style="width: <%= @progress %>%;" aria-valuenow=<%= @progress %> aria-valuemin="0" aria-valuemax="100"><small><%= @progress.to_i %>%</small></div>
+            <% if @progress == 100.0 %>
+              <script>
+              if (true) {
+                const progress = document.getElementById('progressbar');
+                progress.classList.add('bg-success');
+                progress.innerText= 'All done!';
+              };
+              </script>
+            <% end %>
+          </div>
+        <ul class="list-group">
+          <% @tasks.each do |task| %>
+            <li class="list-group-item d-flex justify-content-between">
+              <div class="d-flex flex-row">
+                <% if task.completed %>
+                  <input type="checkbox" class="form-check-input align-self-center me-1" checked=true disabled>
+                <% else %>
+                  <input type="checkbox" class="form-check-input align-self-center me-1" disabled>
+                <% end %>
+                <div class="d-flex flex-column mx-2">
+                  <%= link_to task.title, task_path(task) %>
+                  <small class="text-black-50">On <%= task.created_at.strftime("%a. %d %B") %></small>
+                </div>
+              </div>
+              <div class="d-flex flex-row align-items-center">
+                <div class="mx-2">
+                  <%= link_to "Edit", edit_task_path(task), class: "btn btn-outline-warning btn-sm" %>
+                </div>
+                <div>
+                  <%= link_to "Delete", task_path(task), class: "btn btn-outline-danger btn-sm",
+                  data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+                </div>
+              </div>
+            </li>
+          <% end %>
+        </ul>
       <% end %>
     </div>
-  <ul class="list-group">
-    <% @tasks.each do |task| %>
-      <li class="list-group-item d-flex justify-content-between">
-        <div class="d-flex flex-row">
-          <% if task.completed %>
-            <input type="checkbox" class="form-check-input align-self-center me-1" checked=true disabled>
-          <% else %>
-            <input type="checkbox" class="form-check-input align-self-center me-1" disabled>
-          <% end %>
-          <div class="d-flex flex-column mx-2">
-            <%= link_to task.title, task_path(task) %>
-            <small class="text-black-50">On <%= task.created_at.strftime("%a. %d %B") %></small>
-          </div>
-        </div>
-        <div class="d-flex flex-row align-items-center">
-          <div class="mx-2">
-            <%= link_to "Edit", edit_task_path(task), class: "btn btn-outline-warning btn-sm" %>
-          </div>
-          <div>
-            <%= link_to "Delete", task_path(task), class: "btn btn-outline-danger btn-sm",
-            data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
-          </div>
-        </div>
-      </li>
-    <% end %>
-  </ul>
-<% end %>
+  </div>
+</div>
