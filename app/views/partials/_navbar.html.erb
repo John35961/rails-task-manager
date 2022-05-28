@@ -1,6 +1,11 @@
 <nav class="navbar bg-dark">
-  <h3 class="m-0 p-3"><%= link_to 'My task manager', root_path, class: "text-light" %></h3>
+  <%= link_to 'SimpleTasks', root_path, class:"fs-5 m-0 p-3 text-light" %>
   <div class="p-3">
-    <%= link_to 'Create task', new_task_path, class: "btn btn-success" %>
+    <% if user_signed_in? %>
+      <span class="text-light mx-2"><%= current_user.email %></span>
+      <%= link_to "Log out", destroy_user_session_path, class:"btn btn-danger", data: {turbo_method: "delete"}  %>
+    <% else %>
+      <%= link_to "Log in", new_user_session_path, class:"btn btn-primary"  %>
+    <% end %>
   </div>
 </nav>
