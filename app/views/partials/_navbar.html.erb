@@ -1,11 +1,13 @@
-<nav class="navbar bg-dark">
-  <%= link_to 'SimpleTasks', root_path, class:"fs-5 m-0 p-3 text-light" %>
+<nav class="navbar bg-dark py-0">
+  <%= render 'partials/logo' %>
   <div class="p-3">
     <% if user_signed_in? %>
       <span class="text-light mx-2"><%= current_user.email %></span>
       <%= link_to "Log out", destroy_user_session_path, class:"btn btn-danger", data: {turbo_method: "delete"}  %>
     <% else %>
-      <%= link_to "Log in", new_user_session_path, class:"btn btn-primary"  %>
+      <% unless current_page?(controller: "devise/sessions", action: "new") %>
+        <%= link_to "Log in", new_user_session_path, class:"btn btn-primary"  %>
+      <% end %>
     <% end %>
   </div>
 </nav>
