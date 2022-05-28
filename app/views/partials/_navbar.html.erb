@@ -1,5 +1,5 @@
 <nav class="navbar bg-dark py-0">
-  <%= link_to 'SimpleTasks', root_path, class:"fs-3 m-0 p-3 text-light" %>
+  <%= render 'partials/logo' %>
   <div class="p-3">
     <% if user_signed_in? %>
       <span class="text-light mx-2"><%= current_user.email %></span>
