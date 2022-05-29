@@ -1,4 +1,6 @@
-<%= link_to root_path, class:"fs-3 m-0 text-light" do %>
+<% path = user_signed_in? ? tasks_path : root_path %>
+
+<%= link_to path, class:"fs-3 m-0 text-light" do %>
   <div class="logo d-flex p-3">
     <i class="fa-solid fa-list-check fa-white align-self-center me-2 opacity-50"></i>
     <div>Tidi</div>
