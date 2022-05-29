@@ -20,8 +20,11 @@ class TasksController < ApplicationController
     @task = Task.new(task_params)
     @task.user = current_user
     authorize @task
-    @task.save
-    redirect_to tasks_path(@task)
+    if @task.save
+      redirect_to tasks_path(@task)
+    else
+      render 'new', status: :unprocessable_entity
+    end
   end
 
   def edit
@@ -30,8 +33,11 @@ class TasksController < ApplicationController
 
   def update
     authorize @task
-    @task.update(task_params)
-    redirect_to tasks_path
+    if @task.update(task_params)
+      redirect_to tasks_path(@task)
+    else
+      render 'edit', status: :unprocessable_entity
+    end
   end
 
   def destroy
