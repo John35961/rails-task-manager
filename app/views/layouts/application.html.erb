@@ -10,8 +10,17 @@
   </head>
   <body>
     <%= render 'partials/navbar' %>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+    <% flash.each do |type, msg| %>
+        <% if type == "alert" %>
+          <div class="m-3 alert alert-danger">
+            <%= msg %>
+          </div>
+        <% else %>
+          <div class="m-3 alert alert-primary">
+            <%= msg %>
+          </div>
+      <% end %>
+    <% end %>
     <%= yield %>
   </body>
 </html>
