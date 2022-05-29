@@ -1,8 +1,10 @@
 <nav class="navbar bg-dark py-0">
   <%= render 'partials/logo' %>
-  <div class="p-3">
+  <div class="p-3 d-flex align-items-center">
     <% if user_signed_in? %>
-      <span class="text-light mx-2"><%= current_user.email %></span>
+      <%= link_to edit_user_registration_path do %>
+        <span class="fs-5 text-light me-3"><%= render 'partials/initials_avatar' %></span>
+      <% end %>
       <%= link_to "Log out", destroy_user_session_path, class:"btn btn-danger", data: {turbo_method: "delete"}  %>
     <% else %>
       <% unless current_page?(controller: "devise/sessions", action: "new") %>
