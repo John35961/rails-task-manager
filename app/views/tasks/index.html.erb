@@ -1,9 +1,7 @@
 <div class="container p-4">
   <div class="row d-flex justify-content-center">
     <div class="col-12 col-lg-6">
-      <% if @tasks.length == 0 %>
-        <p class="text-center">No task yet! Add a new one from the navigation bar.</p>
-      <% else %>
+      <% if @tasks.length.nonzero? %>
         <% task = @tasks.length == 1 ? "task" : "tasks"  %>
         <h2 class="mb-3"><%= @tasks.length %> <%= task %> </h2>
         <div class="progress mb-3" style="height: 20px;">
@@ -44,6 +42,11 @@
             </li>
           <% end %>
         </ul>
+      <% else %>
+        <div class="d-flex flex-column justify-content-center align-items-center">
+          <span class="my-3">You don't have any task yet!</span>
+          <%= link_to "New task", new_task_path, class:"btn btn-outline-primary" %>
+        </div>
       <% end %>
     </div>
   </div>
