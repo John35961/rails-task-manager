@@ -1,24 +1,25 @@
-# README
+# TIDI - Simple task manager
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+TIDI is a minimalist task manager, designed to help you focus on most important tasks.
 
-Things you may want to cover:
+## Tools
 
-* Ruby version
+* Ruby on Rails 7
 
-* System dependencies
+* Bootstrap 5
 
-* Configuration
+* SQLite3
 
-* Database creation
+## Run locally
 
-* Database initialization
+Clone the repo
+`git clone git@github.com:John35961/rails-task-manager.git`
 
-* How to run the test suite
+Create database and run migrations
+`rails db:create db:migrate`
 
-* Services (job queues, cache servers, search engines, etc.)
+Run the server with
+`rails s`
 
-* Deployment instructions
-
-* ...
+Get to
+http://localhost:3000
