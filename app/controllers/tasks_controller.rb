@@ -2,7 +2,13 @@ class TasksController < ApplicationController
   before_action :set_task, only: %i[show edit update destroy]
 
   def index
-    @tasks = policy_scope(Task)
+    if params[:query].present?
+      @scoped = policy_scope(Task)
+      query = 'title LIKE :query OR details LIKE :query'
+      @tasks = @scoped.where(query, query: "%#{params[:query]}%")
+    else
+      @tasks = policy_scope(Task)
+    end
     @done = @tasks.where(completed: 1)
     @progress = (@done.length.to_f / @tasks.length) * 100
   end
@@ -49,7 +55,7 @@ class TasksController < ApplicationController
   private
 
   def task_params
-    params.require(:task).permit(:title, :details, :completed)
+    params.require(:task).permit(:title, :details, :completed, :priority)
   end
 
   def set_task
