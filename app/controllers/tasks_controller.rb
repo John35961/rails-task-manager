@@ -35,6 +35,7 @@ class TasksController < ApplicationController
   end
 
   def edit
+    @groups = Group.all
     authorize @task
   end
 
