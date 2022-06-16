@@ -12,7 +12,7 @@ TIDI is a minimalist task manager, designed to help you focus on most important 
 
 * Bootstrap 5
 
-* SQLite3
+* PostgreSQL
 
 ---
 
@@ -24,4 +24,4 @@ Create database and run migrations using: `rails db:create db:migrate`
 
 Run the server with: `rails s`
 
-Then visit http://localhost:3000
+Then visit: http://localhost:3000
