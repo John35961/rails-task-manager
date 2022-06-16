@@ -18,14 +18,14 @@ class TasksController < ApplicationController
   end
 
   def new
-    @task = Task.new
     authorize @task
+    @task = Task.new
   end
 
   def create
+    authorize @task
     @task = Task.new(task_params)
     @task.user = current_user
-    authorize @task
     if @task.save
       redirect_to tasks_path(@task)
     else
