@@ -1,0 +1,10 @@
+<%= simple_form_for(@group) do |f| %>
+  <div class="mb-3">
+    <%= f.input :name, placeholder:"Work, At home, Holidays planning..." %>
+  </div>
+  <% if @group.persisted? %>
+    <%= f.submit class: "btn btn-warning", value: "Update!" %>
+  <% else %>
+    <%= f.submit class: "btn btn-primary", value: "Create!" %>
+  <% end %>
+<% end %>
