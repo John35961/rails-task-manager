@@ -19,7 +19,7 @@ class TasksController < ApplicationController
 
   def new
     @task = Task.new
-    @groups = Group.all
+    @groups = policy_scope(Group)
     authorize @task
   end
 
@@ -35,7 +35,7 @@ class TasksController < ApplicationController
   end
 
   def edit
-    @groups = Group.all
+    @groups = policy_scope(Group)
     authorize @task
   end
 
