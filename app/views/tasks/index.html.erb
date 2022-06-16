@@ -38,7 +38,10 @@
                 <% end %>
                 <div class="d-flex flex-column mx-2">
                   <%= link_to task.title, task_path(task) %>
-                  <small class="text-black-50">On <%= task.created_at.strftime("%a. %d %B") %></small>
+                  <div class="d-flex align-items-center opacity-25">
+                    <i class="fa-solid fa-layer-group me-1"></i>
+                    <small><%= task.group.name %></small>
+                  </div>
                 </div>
               </div>
               <div class="d-flex flex-row align-items-center">
