@@ -19,6 +19,7 @@ class TasksController < ApplicationController
 
   def new
     @task = Task.new
+    @groups = policy_scope(Group)
     authorize @task
   end
 
@@ -34,6 +35,7 @@ class TasksController < ApplicationController
   end
 
   def edit
+    @groups = policy_scope(Group)
     authorize @task
   end
 
@@ -55,7 +57,7 @@ class TasksController < ApplicationController
   private
 
   def task_params
-    params.require(:task).permit(:title, :details, :completed, :priority)
+    params.require(:task).permit(:title, :details, :completed, :priority,:group_id)
   end
 
   def set_task

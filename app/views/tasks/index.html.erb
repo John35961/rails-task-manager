@@ -3,7 +3,16 @@
     <div class="col-12 col-lg-6">
         <div class="d-flex justify-content-between align-items-center mb-3">
           <h2><%= pluralize(@tasks.length, 'task') %></h2>
-          <%= link_to "New task", new_task_path, class:"btn btn-outline-primary" %>
+          <div>
+            <%= link_to new_task_path, class:"btn btn-outline-primary" do %>
+              <i class="fa-solid fa-plus"></i>
+              <span>task</span>
+            <% end %>
+            <%= link_to new_group_path, class:"btn btn-outline-primary" do %>
+              <i class="fa-solid fa-plus"></i>
+              <span>group</span>
+            <% end %>
+          </div>
         </div>
         <div class="mb-3">
           <%= form_for tasks_path, class:"d-flex", method: :get do |f| %>
@@ -11,7 +20,9 @@
                                params[:query],
                                class:"form-control me-2",
                                placeholder:"Find a task..." %>
-            <%=  submit_tag "Search", class:"btn btn-primary" %>
+            <%=  button_tag(type:"submit", class:"btn btn-primary") do %>
+              <i class="fa-solid fa-magnifying-glass"></i>
+            <% end %>
           <% end %>
         </div>
       <% if @tasks.length.nonzero? %>
@@ -38,7 +49,10 @@
                 <% end %>
                 <div class="d-flex flex-column mx-2">
                   <%= link_to task.title, task_path(task) %>
-                  <small class="text-black-50">On <%= task.created_at.strftime("%a. %d %B") %></small>
+                  <div class="d-flex align-items-center opacity-25">
+                    <i class="fa-solid fa-layer-group me-1"></i>
+                    <small><%= task.group.name %></small>
+                  </div>
                 </div>
               </div>
               <div class="d-flex flex-row align-items-center">

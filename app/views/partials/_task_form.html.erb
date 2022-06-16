@@ -13,6 +13,9 @@
   <div class="mb-3">
     <%= f.input :details %>
   </div>
+  <div class="mb-3">
+    <%= f.association :group, collection: @groups %>
+  </div>
   <% if task.persisted? %>
     <%= f.submit class: "btn btn-warning", value: "Update!" %>
   <% else %>
