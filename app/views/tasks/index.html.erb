@@ -40,13 +40,9 @@
           </div>
         <ul class="list-group">
           <% @tasks.each do |task| %>
-            <li class="list-group-item d-flex justify-content-between">
+            <li class="list-group-item d-flex justify-content-between" data-controller="tasks" data-tasks-update-url=<%= task_path(task) %>>
               <div class="d-flex flex-grow-1">
-                <% if task.completed %>
-                  <input type="checkbox" class="form-check-input align-self-center me-1" checked=true disabled>
-                <% else %>
-                  <input type="checkbox" class="form-check-input align-self-center me-1" disabled>
-                <% end %>
+                  <input type="checkbox" class="form-check-input align-self-center me-1" data-tasks-target="completed" data-action="change->tasks#toggle" <% if task.completed %> checked <% end %>>
                 <div class="d-flex flex-row mx-2">
                   <div class="mb-2">
                     <%= link_to task.title, edit_task_path(task), class:"fs-3" %>
