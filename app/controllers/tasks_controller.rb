@@ -3,11 +3,11 @@ class TasksController < ApplicationController
 
   def index
     if params[:query].present?
-      @scoped = policy_scope(Task)
+      @scoped = policy_scope(Task).order(priority: :desc)
       query = 'title LIKE :query OR details LIKE :query'
       @tasks = @scoped.where(query, query: "%#{params[:query]}%")
     else
-      @tasks = policy_scope(Task)
+      @tasks = policy_scope(Task).order(priority: :desc)
     end
     @done = @tasks.where(completed: 1)
     @progress = (@done.length.to_f / @tasks.length) * 100
@@ -41,10 +41,13 @@ class TasksController < ApplicationController
 
   def update
     authorize @task
-    if @task.update(task_params)
-      redirect_to tasks_path(@task)
-    else
-      render 'edit', status: :unprocessable_entity
+    respond_to do |format|
+      format.json
+      if @task.update(task_params)
+        format.html { redirect_to tasks_path(@task) }
+      else
+        format.html { render 'edit', status: :unprocessable_entity }
+      end
     end
   end
 
@@ -57,7 +60,7 @@ class TasksController < ApplicationController
   private
 
   def task_params
-    params.require(:task).permit(:title, :details, :completed, :priority,:group_id)
+    params.require(:task).permit(:title, :details, :completed, :priority, :group_id)
   end
 
   def set_task
