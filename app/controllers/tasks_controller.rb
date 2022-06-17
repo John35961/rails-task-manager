@@ -3,11 +3,11 @@ class TasksController < ApplicationController
 
   def index
     if params[:query].present?
-      @scoped = policy_scope(Task)
+      @scoped = policy_scope(Task).order(priority: :desc)
       query = 'title LIKE :query OR details LIKE :query'
       @tasks = @scoped.where(query, query: "%#{params[:query]}%")
     else
-      @tasks = policy_scope(Task)
+      @tasks = policy_scope(Task).order(priority: :desc)
     end
     @done = @tasks.where(completed: 1)
     @progress = (@done.length.to_f / @tasks.length) * 100
