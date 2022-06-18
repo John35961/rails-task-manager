@@ -9,6 +9,7 @@ class TasksController < ApplicationController
     else
       @tasks = policy_scope(Task).order(priority: :desc)
     end
+    @priorities = priority_mapping(@tasks)
     @done = @tasks.where(completed: 1)
     @progress = (@done.length.to_f / @tasks.length) * 100
   end
@@ -65,5 +66,17 @@ class TasksController < ApplicationController
 
   def set_task
     @task = Task.find(params[:id])
+  end
+
+  def priority_mapping(iterable)
+    iterable.map do |task|
+      case task.priority
+      when 1 then 'Very low'
+      when 2 then 'Low'
+      when 3 then 'Medium'
+      when 4 then 'High'
+      when 5 then 'Very high'
+      end
+    end
   end
 end
