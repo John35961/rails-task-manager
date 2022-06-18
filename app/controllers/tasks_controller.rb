@@ -10,8 +10,6 @@ class TasksController < ApplicationController
       @tasks = policy_scope(Task).order(priority: :desc)
     end
     @priorities = priority_mapping(@tasks)
-    @done = @tasks.where(completed: 1)
-    @progress = (@done.length.to_f / @tasks.length) * 100
   end
 
   def show
