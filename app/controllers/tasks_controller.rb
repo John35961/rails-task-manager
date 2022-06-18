@@ -30,6 +30,7 @@ class TasksController < ApplicationController
     if @task.save
       redirect_to tasks_path(@task)
     else
+      @groups = policy_scope(Group)
       render 'new', status: :unprocessable_entity
     end
   end
