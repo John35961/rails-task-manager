@@ -28,7 +28,7 @@
         <% if @tasks.length.nonzero? %>
           <ul class="list-group">
             <% @tasks.each do |task| %>
-              <li class="list-group-item d-flex justify-content-between" data-controller="tasks" data-tasks-update-url=<%= task_path(task) %>>
+              <li class="d-flex justify-content-between" data-controller="tasks" data-tasks-update-url=<%= task_path(task) %>>
                 <div class="d-flex flex-grow-1">
                     <input type="checkbox" class="form-check-input align-self-center me-1" data-tasks-target="completed" data-action="change->tasks#toggle" <% if task.completed %> checked <% end %>>
                   <div class="d-flex flex-row mx-2">
@@ -54,6 +54,7 @@
                   </div>
                 </div>
               </li>
+              <hr class="separator">
             <% end %>
           </ul>
         <% else %>
