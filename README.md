@@ -1,10 +1,8 @@
-# Tidi - Simple task manager
+# [Tidi - Simple task manager](http://mytidi.co/)
 
 Tidi is a minimalist task manager, designed to help you focus on most important tasks. It was first intented as a Rails project coded during [Le Wagon](https://github.com/lewagon) bootcamp, which I attented in spring 2022, and is now a side-project I'm actively working on.
 
 ![Image](/app/assets/images/readme_index.jpg)
-
----
 
 ## Tools
 
@@ -14,11 +12,9 @@ Tidi is a minimalist task manager, designed to help you focus on most important 
 
 * PostgreSQL
 
----
-
 ## Run locally
 
-Clone the repo: `git clone git@github.com:John35961/rails-task-manager.git`
+Clone the repo: `git@github.com:John35961/tidi.git`
 
 Create database and run migrations using: `rails db:create db:migrate`
 
