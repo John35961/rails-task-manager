@@ -43,6 +43,7 @@ class TasksController < ApplicationController
       if @task.update(task_params)
         format.html { redirect_to tasks_path(@task) }
       else
+        @groups = policy_scope(Group)
         format.html { render 'edit', status: :unprocessable_entity }
       end
     end
