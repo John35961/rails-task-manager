@@ -2,15 +2,11 @@ class TasksController < ApplicationController
   before_action :set_task, only: %i[show edit update destroy]
 
   def index
-    if params[:query].present?
-      @scoped = policy_scope(Task).order(priority: :desc)
-      query = 'title LIKE :query OR details LIKE :query'
-      @tasks = @scoped.where(query, query: "%#{params[:query]}%")
-    else
-      @tasks = policy_scope(Task).order(priority: :desc)
-    end
+    @tasks = policy_scope(Task).order(priority: :desc)
+    @priorities = map_priorities(@tasks)
     @groups = policy_scope(Group)
-    @priorities = priority_mapping(@tasks)
+    filter_with_input
+    filter_with_group
   end
 
   def show
@@ -68,7 +64,7 @@ class TasksController < ApplicationController
     @task = Task.find(params[:id])
   end
 
-  def priority_mapping(iterable)
+  def map_priorities(iterable)
     iterable.map do |task|
       case task.priority
       when 1 then 'Very low'
@@ -78,5 +74,14 @@ class TasksController < ApplicationController
       when 5 then 'Very high'
       end
     end
+  end
+
+  def filter_with_input
+    @tasks = @tasks.where(group_id: params[:group]) if params[:group].present?
+  end
+
+  def filter_with_group
+    query = 'title ILIKE :query OR details ILIKE :query'
+    @tasks = @tasks.where(query, query: "%#{params[:query]}%") if params[:query].present?
   end
 end
