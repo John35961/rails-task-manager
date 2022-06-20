@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   authenticated :user do
-    root to: 'tasks#index', as: 'index'
+    root to: 'tasks#index'
   end
 
   unauthenticated :user do
