@@ -9,6 +9,7 @@ class TasksController < ApplicationController
     else
       @tasks = policy_scope(Task).order(priority: :desc)
     end
+    @groups = policy_scope(Group)
     @priorities = priority_mapping(@tasks)
   end
 
