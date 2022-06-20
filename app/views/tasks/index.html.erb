@@ -20,6 +20,7 @@
                                params[:query],
                                class:"form-control me-2",
                                placeholder:"Find a task..." %>
+            <%= select_tag :group, options_from_collection_for_select(@groups, 'id', 'name'), { include_blank: "Group", class:"form-select me-2" } %>
             <%=  button_tag(type:"submit", class:"btn btn-primary") do %>
               <i class="fa-solid fa-magnifying-glass"></i>
             <% end %>
