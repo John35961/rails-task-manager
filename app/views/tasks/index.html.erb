@@ -22,7 +22,7 @@
             <% @tasks.each_with_index do |task, idx| %>
               <li class="d-flex justify-content-between" data-controller="tasks" data-tasks-update-url=<%= task_path(task) %>>
                 <div class="d-flex flex-grow-1">
-                    <input type="checkbox" class="form-check-input align-self-center me-1" data-tasks-target="completed" data-action="change->tasks#toggle" <% if task.completed %> checked <% end %>>
+                    <input type="checkbox" class="fs-5 form-check-input align-self-center me-1" data-tasks-target="completed" data-action="change->tasks#toggle" <% if task.completed %> checked <% end %>>
                   <div class="d-flex flex-row mx-2">
                     <div class="mb-2">
                       <%= link_to task.title, edit_task_path(task), class:"fs-3", data: {tasks_target:"title"} %>
@@ -41,7 +41,7 @@
                   <div>
                     <%= link_to task_path(task), class:"text-danger",
                     data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} do %>
-                      <i class="fa-solid fa-trash"></i>
+                      <i class="fa-solid fa-xmark"></i>
                     <% end %>
                   </div>
                 </div>
