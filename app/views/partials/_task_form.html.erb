@@ -1,17 +1,16 @@
 <%= simple_form_for(@task) do |f| %>
-  <div class="d-flex mb-3">
-    <%= f.check_box :completed, class: "form-check-input" %>
-    <%= f.label :completed, class: "form-label my-0 mx-1" %>
+  <div class="d-flex align-items-center mb-3">
+    <%= f.check_box :completed, class: "fs-3 mt-0 me-2 form-check-input" %>
+    <div class="w-100">
+      <%= f.input :title, placeholder: Task::PLACEHOLDERS.sample, label: false %>
+    </div>
   </div>
   <div class="mb-3">
     <%= f.label :priority, class: "form-label my-0 mx-1" %>
     <%= range_field :task, :priority, in: 1..5, class:"w-100" %>
   </div>
   <div class="mb-3">
-    <%= f.input :title %>
-  </div>
-  <div class="mb-3">
-    <%= f.input :details %>
+    <%= f.input :details, placeholder: 'Any details?', label: false %>
   </div>
   <div class="mb-3">
     <%= f.association :group, collection: @groups, include_blank: false %>
