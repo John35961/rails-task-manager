@@ -4,6 +4,9 @@
 @import "config/bootstrap_variables";
 @import "bootstrap/scss/bootstrap";
 @import "config/components/logo";
+@import "config/components/avatar";
+@import "config/components/navbar";
+@import "config/components/search";
 @import "pages/home";
 
 
@@ -12,6 +15,7 @@ a {
 }
 
 body {
+  background-color: $light-grey;
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -22,5 +26,5 @@ body {
 }
 
 .separator {
-  color: $light-grey;
+  color: $grey;
 }
