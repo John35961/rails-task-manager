@@ -5,9 +5,6 @@
       <%= link_to edit_user_registration_path do %>
         <span class="fs-5 text-light me-3"><%= render 'partials/initials_avatar' %></span>
       <% end %>
-      <%= link_to destroy_user_session_path, class:"text-light", data: {turbo_method: "delete"}  do %>
-        <i class="fa-solid fa-arrow-right-from-bracket"></i>
-      <% end %>
     <% else %>
       <% unless current_page?(controller: "devise/sessions", action: "new") %>
         <%= link_to "Log in", new_user_session_path, class:"btn btn-primary"  %>
