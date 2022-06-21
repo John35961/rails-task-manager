@@ -1,0 +1,10 @@
+<%= form_for tasks_path, class:"d-flex", method: :get do |f| %>
+  <%= text_field_tag :query,
+                     params[:query],
+                     class:"form-control me-2",
+                     placeholder:"Find a task..." %>
+  <%= select_tag :group, options_from_collection_for_select(@groups, 'id', 'name', selected:params[:group]), { include_blank: "All groups", class:"groups form-select" } %>
+  <%=  button_tag(type:"submit", class:"btn submit") do %>
+    <i class="fa-solid fa-magnifying-glass"></i>
+  <% end %>
+<% end %>

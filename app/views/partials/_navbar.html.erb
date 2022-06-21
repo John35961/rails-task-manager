@@ -1,18 +1,25 @@
 <nav class="navbar navbar-transparent position-sticky top-0 py-2 px-3"
      data-controller="navbar"
-     data-action="scroll@window->navbar#updateNavbar"
-  <div class="p-1">
-    <%= render 'partials/logo' %>
-  </div>
-  <div class="d-flex align-items-center">
-    <% if user_signed_in? %>
-      <%= link_to edit_user_registration_path, class:"avatar" do %>
-        <%= render 'partials/initials_avatar' %>
-      <% end %>
-    <% else %>
-      <% unless current_page?(controller: "devise/sessions", action: "new") %>
-        <%= link_to "Log in", new_user_session_path, class:"btn btn-outline-dark"  %>
-      <% end %>
+     data-action="scroll@window->navbar#updateNavbar">
+  <div class="d-flex flex-grow-1 align-items-center">
+    <div class="p-1 me-3">
+      <%= render 'partials/logo' %>
+    </div>
+    <% if current_page?("/tasks") || current_page?("/")  %>
+      <div class="search d-none" data-navbar-target="minisearch">
+        <%= render 'partials/search' %>
+      </div>
     <% end %>
   </div>
+    <div class="d-flex align-items-center">
+      <% if user_signed_in? %>
+        <%= link_to edit_user_registration_path, class:"avatar" do %>
+          <%= render 'partials/initials_avatar' %>
+        <% end %>
+      <% else %>
+        <% unless current_page?(controller: "devise/sessions", action: "new") %>
+          <%= link_to "Log in", new_user_session_path, class:"btn btn-outline-dark"  %>
+        <% end %>
+      <% end %>
+    </div>
 </nav>
