@@ -3,18 +3,24 @@
     <div class="col-12 col-lg-6">
       <div class="d-flex justify-content-between align-items-center mb-3">
         <h2 class="mb-0"><%= current_user.first_name %> <%= current_user.last_name %></h2>
-        <%= link_to destroy_user_session_path, class:"fs-3 text-dark opacity-50", data: {turbo_method: "delete"}  do %>
-          <i class="fa-solid fa-arrow-right-from-bracket"></i>
-        <% end %>
-      </div>
       <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), data: {turbo: false}) do |f| %>
+        <div class="actions">
+          <%= f.submit "Update!", class:"btn btn-outline-warning" %>
+        </div>
+      </div>
         <%= render "devise/shared/error_messages", resource: resource %>
         <%= f.input :email, autofocus: true %><br />
         <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
           <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
         <% end %>
-        <%= f.input :first_name %><br />
-        <%= f.input :last_name %><br />
+        <div class="row">
+          <div class="col-12 col-lg-6">
+            <%= f.input :first_name %><br />
+          </div>
+          <div class="col-12 col-lg-6">
+            <%= f.input :last_name %><br />
+          </div>
+        </div>
         <%= f.input :password, label:"New password" %>
         <% if @minimum_password_length %>
           <div class="form-text">(<%= @minimum_password_length %> characters minimum)</div>
@@ -22,8 +28,11 @@
         <%= f.input :password_confirmation, label:"New password confirmation" %><br />
         <%= f.input :current_password %>
         <div class="form-text">(We need your current password to confirm your changes)</div><br />
-        <div class="actions">
-          <%= f.submit "Update", class:"btn btn-primary" %>
+        <div class="d-flex justify-content-end">
+          <%= link_to destroy_user_session_path, class:"text-danger", data: {turbo_method: "delete"}  do %>
+            <span class="me-1">Log out</span>
+            <i class="fs-7 fa-solid fa-arrow-right-from-bracket"></i>
+          <% end %>
         </div>
       <% end %>
     </div>
