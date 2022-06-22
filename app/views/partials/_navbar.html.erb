@@ -5,7 +5,7 @@
     <div class="p-1 me-3">
       <%= render 'partials/logo' %>
     </div>
-    <% if current_page?("/tasks") || current_page?("/")  %>
+    <% if (current_page?("/tasks") || current_page?("/")) && user_signed_in? %>
       <div class="search d-none" data-navbar-target="minisearch">
         <%= render 'partials/search' %>
       </div>
