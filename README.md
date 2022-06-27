@@ -14,7 +14,7 @@ Tidi is a minimalist task manager, designed to help you focus on most important 
 
 ## Run locally
 
-Clone the repo: `git@github.com:John35961/tidi.git`
+Clone the repo: `git clone git@github.com:John35961/tidi.git`
 
 Create database and run migrations using: `rails db:create db:migrate`
 
