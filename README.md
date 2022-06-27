@@ -1,4 +1,4 @@
-# ✨ [Tidi - Simple task manager](https://rails-task-manager-prod.herokuapp.com/)
+# ✨ [Tidi - Simple task manager](http://www.mytidi.xyz/)
 
 Tidi is a minimalist task manager, designed to help you focus on most important tasks. It was first intented as a Rails project coded during [Le Wagon](https://github.com/lewagon) bootcamp, which I attented in spring 2022, and is now a side-project I'm actively working on.
 
